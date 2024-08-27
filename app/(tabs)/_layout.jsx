@@ -21,20 +21,20 @@ const TabLayout = () => {
       <Tabs.Screen name='home' options={{
         title: 'Home',
         headerShown: false,
-        tabBarIcon: ({ color }) => <Ionicons name="home" size={24} color="black" color={color} />
+        tabBarIcon: ({ color }) => <Ionicons name="home" size={24} color={color} />
       }} />
 
       <Tabs.Screen name='favourite' options={{
         title: 'Home',
         headerShown: false,
-        tabBarIcon: ({ color }) => <Ionicons name="heart" size={24} color="black" color={color} />
+        tabBarIcon: ({ color }) => <Ionicons name="heart" size={24} color={color} />
       }} />
 
       <Tabs.Screen name='inbox'
         options={{
           title: 'Home',
           headerShown: false,
-          tabBarIcon: ({ color }) => <Ionicons name="chatbubble" size={24} color="black" color={color} />
+          tabBarIcon: ({ color }) => <Ionicons name="chatbubble" size={24} color={color} />
         }}
       />
 
@@ -42,7 +42,7 @@ const TabLayout = () => {
         options={{
           title: 'Home',
           headerShown: false,
-          tabBarIcon: ({ color }) => <Ionicons name="people-circle" size={24} color="black" color={color} />
+          tabBarIcon: ({ color }) => <Ionicons name="people-circle" size={24} color={color} />
         }} />
     </Tabs>
   )
