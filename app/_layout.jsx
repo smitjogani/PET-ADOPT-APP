@@ -45,6 +45,7 @@ export default function RootLayout() {
       <ClerkLoaded>
         <SignedIn>
           <Stack>
+            
             <Stack.Screen
               name="index"
               options={{
@@ -55,7 +56,7 @@ export default function RootLayout() {
         </SignedIn>
 
         <SignedOut>
-          <LoginScreen/>
+          <LoginScreen />
         </SignedOut>
 
       </ClerkLoaded>

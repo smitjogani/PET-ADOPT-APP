@@ -3,12 +3,10 @@ import React from 'react'
 
 const Home = () => {
   return (
-    <View style={{
-      padding:50,
-    }}>
+    <View>
       <Text style={{
         fontFamily:'outfit-bold',
-        fontSize: 40
+        fontSize: 20
       }}>home</Text>
     </View>
   )
