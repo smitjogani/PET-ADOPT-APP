@@ -1,13 +1,15 @@
 import { View, Text } from 'react-native'
 import React from 'react'
 
+import Header from "../../components/Home/header"
+
 const Home = () => {
   return (
-    <View>
-      <Text style={{
-        fontFamily:'outfit-bold',
-        fontSize: 20
-      }}>home</Text>
+    <View style={{
+      padding: 20,
+      marginTop: 20
+    }}>
+      <Header/>
     </View>
   )
 }
