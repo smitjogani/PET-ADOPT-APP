@@ -1,7 +1,8 @@
 import * as SecureStore from 'expo-secure-store'
-import { ClerkProvider, ClerkLoaded } from "@clerk/clerk-expo";
-import { Stack } from "expo-router";
+import { ClerkProvider, ClerkLoaded, SignedIn, SignedOut } from "@clerk/clerk-expo";
+import { Redirect, Stack } from "expo-router";
 import { useFonts } from "expo-font";
+import LoginScreen from "./login/index.jsx"
 
 const tokenCache = {
   async getToken(key) {
@@ -42,14 +43,21 @@ export default function RootLayout() {
   return (
     <ClerkProvider tokenCache={tokenCache} publishableKey={publishableKey}>
       <ClerkLoaded>
-        <Stack>
-          <Stack.Screen
-            name="index"
-            options={{
-              headerShown: false,
-            }}
-          />
-        </Stack>
+        <SignedIn>
+          <Stack>
+            <Stack.Screen
+              name="index"
+              options={{
+                headerShown: false,
+              }}
+            />
+          </Stack>
+        </SignedIn>
+
+        <SignedOut>
+          <LoginScreen/>
+        </SignedOut>
+
       </ClerkLoaded>
     </ClerkProvider>
   );
