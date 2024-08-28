@@ -31,7 +31,7 @@ const index = () => {
     return (
         <View style={{
             height: '100%',
-            backgroundColor: Colors.WHITE,
+            backgroundColor: Colors.LIGHT,
         }}>
             <Image
                 source={require("@/assets/images/login.png")}
