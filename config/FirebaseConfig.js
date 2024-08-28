@@ -2,7 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 
 const firebaseConfig = {
-  apiKey: "AIzaSyBG31LOop_44tns9JWeDnbvGobSBW8m0zg",
+  apiKey: process.env.EXPO_PUBLIC_FIREBASE_API_KEY,
   authDomain: "pet-adopt-90a84.firebaseapp.com",
   projectId: "pet-adopt-90a84",
   storageBucket: "pet-adopt-90a84.appspot.com",
