@@ -4,7 +4,7 @@ import { db } from "../../config/FirebaseConfig"
 import { getDocs, collection } from 'firebase/firestore'
 import Colors from '../../constants/Colors'
 
-const Category = () => {
+const Category = ({category}) => {
 
   const [categoryList, setCategoryList] = useState([]);
   const [selectedCategory, setSelectedCategory] = useState('Dogs');
@@ -41,7 +41,10 @@ const Category = () => {
         data={categoryList}
         renderItem={({ item, index }) => (
           <TouchableOpacity
-            onPress={() => setSelectedCategory(item.name)}
+            onPress={() => {
+              setSelectedCategory(item.name);
+                category(item.name)
+              }}
             style={{
               flex: 1
             }}>
