@@ -1,21 +1,29 @@
-import { View, Text, Image } from 'react-native'
+import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Colors from '../../constants/Colors'
+import { useRouter } from 'expo-router'
 
 const PetListItem = ({ pet }) => {
+
+  const router = useRouter();
+
   return (
-    <View style={{
+    <TouchableOpacity style={{
       padding: 10,
       marginTop: 10,
       marginRight: 15,
       borderRadius: 15,
       backgroundColor: Colors.WHITE,
-
-    }}>
+    }}
+      onPress={() => router.push({
+        pathname: '/pet-details',
+        params: pet
+      })}
+    >
       <Image source={{ uri: pet?.imageUrl }}
         style={{
-          width: 200,
-          height: 170,
+          width: 220,
+          height: 180,
           objectFit: 'cover',
           borderRadius: 11,
         }}
@@ -54,7 +62,7 @@ const PetListItem = ({ pet }) => {
         </Text>
       </View>
 
-    </View>
+    </TouchableOpacity>
   )
 }
 

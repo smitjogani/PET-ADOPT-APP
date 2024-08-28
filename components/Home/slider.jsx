@@ -46,7 +46,8 @@ const Styles = StyleSheet.create({
     height: 175,
     width: Dimensions.get('screen').width * 0.9,
     borderRadius: 15,
-    marginRight: 15
+    marginRight: 15,
+    objectFit:'cover'
   }
 })
 

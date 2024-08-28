@@ -17,7 +17,7 @@ const PetListByCategoty = () => {
 
   /**
    * used to get pet list on Category selection
-   * @param {*} category
+   * @param {*} category  
    */
 
   const GetPetList = async (category) => {
