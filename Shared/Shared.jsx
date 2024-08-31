@@ -9,9 +9,7 @@ const GetFavList = async (user) => {
     else {
         await setDoc(doc(db, 'UserFavPet', user?.primaryEmailAddress?.emailAddress), {
             email: user?.primaryEmailAddress?.emailAddress,
-            favorites: [
-
-            ]
+            favorites: []
         }
         );
     }

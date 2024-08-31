@@ -21,11 +21,11 @@ const PetListItem = ({ pet }) => {
         params: pet
       })}
     >
-
+      
       <Image source={{ uri: pet?.imageUrl }}
         style={{
           width: 220,
-          height: 180,
+          height: 185,
           objectFit: 'cover',
           borderRadius: 11,
         }}
