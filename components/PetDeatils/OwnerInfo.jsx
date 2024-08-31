@@ -1,7 +1,7 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
 import Colors from "../../constants/Colors"
-import Feather from '@expo/vector-icons/Feather';
+import Ionicons from '@expo/vector-icons/Ionicons';
 
 const OwnerInfo = ({ pet }) => {
     return (
@@ -11,7 +11,7 @@ const OwnerInfo = ({ pet }) => {
             display: 'flex',
             flexDirection: 'row',
             alignItems: 'center',
-            justifyContent:'space-between',
+            justifyContent: 'space-between',
             gap: 20,
             borderWidth: 1,
             backgroundColor: Colors.LIGHT_PRIMARY,
@@ -24,7 +24,7 @@ const OwnerInfo = ({ pet }) => {
                 display: 'flex',
                 flexDirection: 'row',
                 alignItems: 'center',
-                gap:20
+                gap: 20
             }}>
                 <Image source={{ uri: pet?.userImage }}
                     style={{
@@ -46,12 +46,8 @@ const OwnerInfo = ({ pet }) => {
                     }}>Pet Owner</Text>
                 </View>
             </View>
-            <View style={{
-                padding: 10 ,
-                borderWidth: 1,
-                borderRadius: 99,
-            }}>
-                <Feather name="send" size={24} color="black" />
+            <View>
+                <Ionicons name="send" size={26} color="black" />
             </View>
         </View>
     )

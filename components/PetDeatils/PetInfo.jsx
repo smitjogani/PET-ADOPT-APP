@@ -1,7 +1,7 @@
 import { View, Text, Image } from 'react-native'
 import React from 'react'
-import Ionicons from '@expo/vector-icons/Ionicons';
 import Colors from "../../constants/Colors"
+import MarkFav from './MarkFav'
 
 const PetInfo = ({ pet }) => {
     return (
@@ -34,7 +34,7 @@ const PetInfo = ({ pet }) => {
                     </Text>
                 </View>
 
-                <Ionicons name="heart-outline" size={34} color="black" />
+                <MarkFav pet={pet}/>
             </View>
         </View>
     )

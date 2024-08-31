@@ -2,6 +2,7 @@ import { View, Text, Image, TouchableOpacity } from 'react-native'
 import React from 'react'
 import Colors from '../../constants/Colors'
 import { useRouter } from 'expo-router'
+import MarkFav from '../PetDeatils/MarkFav'
 
 const PetListItem = ({ pet }) => {
 
@@ -20,6 +21,7 @@ const PetListItem = ({ pet }) => {
         params: pet
       })}
     >
+
       <Image source={{ uri: pet?.imageUrl }}
         style={{
           width: 220,
