@@ -1,13 +1,17 @@
-import { View, Text, Image, TextInput, StyleSheet, ScrollView, TouchableOpacity, Pressable, ToastAndroid } from 'react-native'
+import { View, Text, Image, TextInput, StyleSheet, ScrollView, TouchableOpacity, Pressable, ToastAndroid, ActivityIndicator } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import Colors from "../../constants/Colors"
 import { useNavigation } from 'expo-router'
 import { Picker } from '@react-native-picker/picker'
-import { db } from "../../config/FirebaseConfig"
-import { getDocs, collection } from 'firebase/firestore'
+import { db, storage } from "../../config/FirebaseConfig"
+import { getDocs, collection, setDoc, doc } from 'firebase/firestore'
+import { getDownloadURL, ref, uploadBytes } from "firebase/storage"
 import * as ImagePicker from 'expo-image-picker';
+import { useUser } from '@clerk/clerk-expo'
 
 const AddNewPet = () => {
+
+  const { user } = useUser();
 
   const [categoryList, setCategoryList] = useState([]);
   const [formData, setFormData] = useState();
@@ -16,6 +20,7 @@ const AddNewPet = () => {
     category: 'Dogs', sex: "Male"
   });
   const [image, setImage] = useState();
+  const [loader, setLoader] = useState(false);
 
   const navigation = useNavigation();
 
@@ -47,11 +52,26 @@ const AddNewPet = () => {
     }
   }
 
+  const leng = () => {
+    let key, count = 0;
+    for (key in formData) {
+      if (formData.hasOwnProperty(key))
+        count++;
+    }
+
+    return count;
+  }
+
   const onsubmit = () => {
-    if (Object.keys(formData).length < 8) {
-      ToastAndroid.show('Enter All Details', ToastAndroid.SHORT);
+    if (leng() !== 8) {
+      ToastAndroid.show("Enter All Field", ToastAndroid.SHORT);
       return;
     }
+    else if (leng() === 8) {
+      UploadImage();
+      ToastAndroid.show("Submited", ToastAndroid.SHORT);
+    }
+
   }
 
   const handleInputChange = (fieldName, fieldValue) => {
@@ -59,6 +79,34 @@ const AddNewPet = () => {
       ...prev,
       [fieldName]: fieldValue
     }))
+  }
+
+  const UploadImage = async () => {
+    setLoader(true);
+    const resp = await fetch(image);
+    const blobImage = await resp.blob();
+    const storageRef = ref(storage, '/PetAdopt/' + Date.now() + '.jpg');
+
+    uploadBytes(storageRef, blobImage).then((snapshot) => {
+      console.log('File Uploaded');
+    }).then(resp => {
+      getDownloadURL(storageRef).then(async (downloadURL) => {
+        saveFormData(downloadURL);
+      })
+    })
+  }
+
+  const saveFormData = async (imageUrl) => {
+    const docId = Date.now().toString();
+    await setDoc(doc(db, 'Pets', docId), {
+      ...formData,
+      imageUrl: imageUrl,
+      userName: user?.fullName,
+      email: user?.primaryEmailAddress?.emailAddress,
+      userImage: user?.imageUrl,
+      id: docId
+    })
+    setLoader(false);
   }
 
   return (
@@ -81,7 +129,8 @@ const AddNewPet = () => {
           borderColor: "#000",
           borderRadius: 15,
           marginBottom: 8
-        }} /> :
+        }} />
+          :
           <Image source={{ uri: image }}
             style={{
               width: 100,
@@ -123,7 +172,7 @@ const AddNewPet = () => {
 
       <View style={style.inputContainer}>
         <Text style={style.lable}>Age *</Text>
-        <TextInput placeholder="Enter pet's age" style={style.input} onChangeText={(value) => handleInputChange('age', value)} />
+        <TextInput keyboardType='number-pad' placeholder="Enter pet's age" style={style.input} onChangeText={(value) => handleInputChange('age', value)} />
       </View>
 
       <View style={style.inputContainer}>
@@ -147,7 +196,7 @@ const AddNewPet = () => {
 
       <View style={style.inputContainer}>
         <Text style={style.lable}>Weight *</Text>
-        <TextInput placeholder="Enter pet's weight" style={style.input} onChangeText={(value) => handleInputChange('weight', value)} />
+        <TextInput keyboardType='number-pad' placeholder="Enter pet's weight" style={style.input} onChangeText={(value) => handleInputChange('weight', value)} />
       </View>
 
       <View style={style.inputContainer}>
@@ -161,11 +210,16 @@ const AddNewPet = () => {
       </View>
 
       <TouchableOpacity style={style.button} onPress={onsubmit}>
-        <Text style={{
-          fontFamily: 'outfit-medium',
-          textAlign: 'center',
-          fontSize: 16
-        }}>Submit</Text>
+
+        {loader ? 
+        <ActivityIndicator size={'large'}/> 
+        :
+          <Text style={{
+            fontFamily: 'outfit-medium',
+            textAlign: 'center',
+            fontSize: 16
+          }}>Submit</Text>
+        }
       </TouchableOpacity>
 
     </ScrollView>
