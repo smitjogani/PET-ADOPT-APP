@@ -43,7 +43,7 @@ const ChatScreen = () => {
 
   const onSend = async(newMessage) => {
     setMessages((previousMessage) => GiftedChat.append(previousMessage, newMessage));
-    newMessage[0].createdAt = moment().format('MM-DD-YYYY HH:mm:ss')
+    newMessage[0].createdAt = moment().format('MM-DD-YY HH:mm:ss')
     await addDoc(collection(db,'Chat',params.id, 'Messages'), newMessage[0])
   }
 
