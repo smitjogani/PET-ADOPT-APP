@@ -69,7 +69,7 @@ const AddNewPet = () => {
     }
     else if (leng() === 8) {
       UploadImage();
-      ToastAndroid.show("Submited", ToastAndroid.SHORT);
+      // ToastAndroid.show("Submited", ToastAndroid.SHORT);
     }
 
   }
