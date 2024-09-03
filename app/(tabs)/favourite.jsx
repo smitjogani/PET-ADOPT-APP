@@ -10,24 +10,20 @@ import Colors from "../../constants/Colors"
 const favourite = () => {
 
   const router = useRouter();
-
   const { user } = useUser();
-  const [favIds, setFavIds] = useState([]);
   const [favPetList, setFavPetList] = useState([]);
 
   useEffect(() => {
     user && GetFavPetIds();
-  }, [])
+  }, [user])
 
   const GetFavPetIds = async () => {
     const result = await Shared.GetFavList(user);
-    setFavIds(result?.favorites);
-    console.log("Fav ==> ", favIds);
-    GetFavPetList();
+    GetFavPetList(result?.favorites);
   }
 
-  const GetFavPetList = async () => {
-    const q = query(collection(db, 'Pets'), where('id', 'in', ["1725267863180", "1725267863180", "1725267954157"]));
+  const GetFavPetList = async (favIds) => {
+    const q = query(collection(db, 'Pets'), where('id', 'in', favIds));
     const querySnapshot = await getDocs(q);
 
     querySnapshot.forEach((doc) => {
