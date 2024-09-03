@@ -139,6 +139,17 @@ const UserPost = () => {
                 )}
             />
 
+            {
+            userPostList?.length == 0 && 
+            <Text style={{
+                marginTop: 120,
+                textAlign:'center',
+                fontFamily:'outfit-medium',
+                fontSize:25 
+            }}>
+                No Post found    
+            </Text>
+            }
         </View>
     )
 }
