@@ -36,7 +36,7 @@ const PetListItem = ({ pet }) => {
         fontSize: 20,
         paddingTop: 5
       }}>
-        {pet.name}
+        {pet?.name}
       </Text>
 
       <View style={{
@@ -50,7 +50,7 @@ const PetListItem = ({ pet }) => {
           color: "#a6a39c",
           fontSize: 15
         }}>
-          {pet.breed}
+          {pet?.breed}
         </Text>
 
         <Text style={{
@@ -60,7 +60,7 @@ const PetListItem = ({ pet }) => {
           borderColor: Colors.PRIMARY,
           borderWidth: .7
         }}>
-          {pet.age} Year
+          {pet?.age} Year
         </Text>
       </View>
 

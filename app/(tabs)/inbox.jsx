@@ -19,6 +19,7 @@ const inbox = () => {
 
   const GetUserList = async () => {
     setLoader(true);
+    setUserList([]);
     const q = query(collection(db, 'Chat'), where('userIds', 'array-contains', user?.primaryEmailAddress?.emailAddress));
 
     const querySnapshot = await getDocs(q);

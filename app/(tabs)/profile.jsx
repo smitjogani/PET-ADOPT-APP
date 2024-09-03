@@ -20,18 +20,25 @@ const profile = () => {
     },
     {
       id: 2,
+      name: 'My Post',
+      icon: 'bookmark',
+      path: '/user-post'
+    }
+    ,
+    {
+      id: 3,
       name: 'Favorites',
       icon: 'heart',
       path: '/(tabs)/favourite'
     },
     {
-      id: 3,
+      id: 4,
       name: 'Inbox',
       icon: 'chatbubble',
       path: '/(tabs)/inbox'
     },
     {
-      id: 4,
+      id: 5,
       name: 'Logout',
       icon: 'exit',
       path: 'logout'

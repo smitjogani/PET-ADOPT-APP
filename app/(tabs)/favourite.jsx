@@ -22,7 +22,7 @@ const favourite = () => {
   }
 
   const GetFavPetList = async () => {
-    const q = query(collection(db, 'Pets'), where('id', 'in', favIds));
+    const q = query(collection(db, 'Pets'), where('id', '==', favIds));
     const querySnapshot = await getDocs(q);
     querySnapshot.forEach((doc) => {
       console.log(doc.data());
