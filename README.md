@@ -1,5 +1,5 @@
 # Pet Adopt Application #
-👉 This is a Pet adopt application where user adopt the pet's (Dogs, Cats, Fishes, and Birds) threw this platform. and also giver gave the pet threw this app. both adopter and giver interact each other.
+👉 This is a Pet adopt application where user adopt the pet's (Dogs, Cats, Fishes, and Birds) threw this platform. and also giver gave the pet threw this app. both adopter and giver interact each other with chat or messaging. 
 
 # Technology & Tools #
 ```
